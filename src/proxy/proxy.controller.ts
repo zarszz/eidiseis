@@ -6,8 +6,8 @@ import {
   Patch,
   Param,
   Delete,
-  Res,
   Put,
+  Query,
 } from '@nestjs/common';
 import { Post as PostModel } from './entity';
 import { ProxyService } from './proxy.service';
@@ -22,8 +22,10 @@ export class ProxyController {
   }
 
   @Get('/posts')
-  findAll() {
-    return this.proxyService.findAll();
+  findAll(@Query('save') save: string) {
+    return Boolean(JSON.parse(save))
+      ? this.proxyService.findAllAndSave()
+      : this.proxyService.findAll();
   }
 
   @Get('/posts/:id')
@@ -41,10 +43,10 @@ export class ProxyController {
     return this.proxyService.update(+id, post);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateProxyDto: UpdateProxyDto) {
-  //   return this.proxyService.update(+id, updateProxyDto);
-  //}
+  @Patch(':id')
+  patch(@Param('id') id: string, @Body() post: PostModel) {
+    return this.proxyService.partialUpdate(+id, post);
+  }
 
   @Delete('/posts/:id')
   remove(@Param('id') id: string) {

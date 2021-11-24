@@ -32,4 +32,8 @@ export class PostService {
   delete(id: string) {
     return this.postModel.destroy({ where: { id } });
   }
+
+  bulkInsert(posts: Post[]) {
+    return this.postModel.bulkCreate(posts);
+  }
 }

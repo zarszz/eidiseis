@@ -1,19 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 import { SequelizeModule } from '@nestjs/sequelize';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { ProxyModule } from './proxy/proxy.module';
 
-import * as dotenv from 'dotenv';
 import { Dialect } from 'sequelize/types';
-
-dotenv.config({ path: __dirname + '/.env' });
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     SequelizeModule.forRoot({
       dialect: <Dialect>process.env.DB_DIALECT || <Dialect>'postgres',
       host: process.env.DB_HOST,
@@ -28,7 +25,5 @@ dotenv.config({ path: __dirname + '/.env' });
     CommentModule,
     ProxyModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
