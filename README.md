@@ -26,10 +26,31 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Deployment
+You can access the deployed version of this apps with url : https://eidiseis.herokuapp.com/posts
+
+## Documentation
+Here is Postman generated documentation url : https://documenter.getpostman.com/view/7837969/UVJZoyJg
+
 ## Installation
 
 ```bash
 $ npm install
+```
+
+## Configuration
+
+Please change <b>.env</b> file with your own database configuration
+```bash
+$ cp .env.example .env
+```
+```
+DB_DIALECT=pgsql/mysql
+DB_HOST=YOUR_DB_HOST
+DB_PORT=YOUR_DB_PORT
+DB_USERNAME=YOUR_DB_USERNAME
+DB_PASSWORD=YOUR_DB_PASSWORD
+DB_DATABASE=YOUR_DB_DATABASE
 ```
 
 ## Running the app
