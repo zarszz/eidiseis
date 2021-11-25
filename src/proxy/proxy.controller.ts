@@ -43,7 +43,7 @@ export class ProxyController {
     return this.proxyService.update(+id, post);
   }
 
-  @Patch(':id')
+  @Patch('/posts/:id')
   patch(@Param('id') id: string, @Body() post: PostModel) {
     return this.proxyService.partialUpdate(+id, post);
   }
