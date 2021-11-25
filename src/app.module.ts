@@ -20,6 +20,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_DATABASE,
       autoLoadModels: true,
       synchronize: true,
+      ssl: process.env.NODE_ENV === 'production',
     }),
     PostModule,
     CommentModule,
